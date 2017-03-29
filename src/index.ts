@@ -11,7 +11,7 @@ export = function yaml({exclude = null} = {}) {
             module: {
                 rules: get(this, 'module.rules', []).concat([{
                     test: /\.(yaml|yml)/i,
-                    loader: 'json-loader!yaml-loader',
+                    use: [{ loader: 'json-loader' }, { loader: 'yaml-loader' }],
                     exclude: exclude || (this.metadata.root ? [path.join(this.metadata.root, 'node_modules')] : []),
                 }])
             }
